@@ -3,8 +3,26 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import sys
+import argparse
+
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Calculate stream statistics from standard input."
+    )
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("-s", "--sum", action="store_true", help="output sum only")
+    group.add_argument("-m", "--mean", action="store_true", help="output mean only")
+    group.add_argument("-c", "--count", action="store_true", help="output count only")
+    group.add_argument("--min", action="store_true", help="output minimum value only")
+    group.add_argument("--max", action="store_true", help="output maximum value only")
+    return parser.parse_args()
+
+def fmt(n):
+    return str(int(n)) if n.is_integer() else f"{n:.4f}".rstrip('0').rstrip('.')
 
 def main():
+    args = parse_args()
+
     nums = []
     for line in sys.stdin:
         line = line.strip()
@@ -23,18 +41,25 @@ def main():
     total = sum(nums)
     count = len(nums)
     avg = total / count
-    val_max = max(nums)
     val_min = min(nums)
+    val_max = max(nums)
 
-    # 整数は整数、小数はフォーマット
-    def fmt(n):
-        return str(int(n)) if n.is_integer() else f"{n:.4f}".rstrip('0').rstrip('.')
-
-    print(f"count: {count}")
-    print(f"sum: {fmt(total)}")
-    print(f"mean: {fmt(avg)}")
-    print(f"min: {fmt(val_min)}")
-    print(f"max: {fmt(val_max)}")
+    if args.sum:
+        print(fmt(total))
+    elif args.mean:
+        print(fmt(avg))
+    elif args.count:
+        print(count)
+    elif args.min:
+        print(fmt(val_min))
+    elif args.max:
+        print(fmt(val_max))
+    else:
+        print(f"count: {count}")
+        print(f"sum: {fmt(total)}")
+        print(f"mean: {fmt(avg)}")
+        print(f"min: {fmt(val_min)}")
+        print(f"max: {fmt(val_max)}")
 
 if __name__ == "__main__":
     main()
