@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 鈴木 逞馬
+# SPDX-License-Identifier: BSD-3-Clause
+
+import sys
+
+def main():
+    nums = []
+    for line in sys.stdin:
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            nums.append(float(line))
+        except ValueError:
+            sys.stderr.write(f"Error: Invalid input '{line}'\n")
+            sys.exit(1)
+
+    if not nums:
+        sys.stderr.write("Error: No numeric input provided\n")
+        sys.exit(1)
+
+    total = sum(nums)
+    count = len(nums)
+    avg = total / count
+    val_max = max(nums)
+    val_min = min(nums)
+
+    # 整数は整数、小数はフォーマット
+    def fmt(n):
+        return str(int(n)) if n.is_integer() else f"{n:.4f}".rstrip('0').rstrip('.')
+
+    print(f"count: {count}")
+    print(f"sum: {fmt(total)}")
+    print(f"mean: {fmt(avg)}")
+    print(f"min: {fmt(val_min)}")
+    print(f"max: {fmt(val_max)}")
+
+if __name__ == "__main__":
+    main()
