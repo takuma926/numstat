@@ -6,10 +6,10 @@
 
 ## インストールと実行方法
 
-リポジトリをクローンして実行権限を付与することで、すぐに利用できます。
+リポジトリをクローンして実行権限を付与することで、利用できます。
 
 ```
-$ git clone [https://github.com/takuma926/numstat.git](https://github.com/takuma926/numstat.git)
+$ git clone [https://github.com/takuma926/numstat.git]
 $cd numstat$ chmod +x numstat
 ```
 
@@ -70,7 +70,7 @@ $ seq 5 | ./numstat -c
 
 ## 動作要件
 
-OS: Ubuntu 22.04 LTS / 24.04 LTS
+OS: Ubuntu 22.04 LTS
 
 Python: 3.10 / 3.11 / 3.12 / 3.13 / 3.14
 
