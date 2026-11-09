@@ -79,7 +79,3 @@ bash ./test.bash
 - このソフトウェアパッケージは、3条項BSDライセンスの下、再頒布および使用が許可されます。
 - © 2026 鈴木 逞馬
 - SPDX-License-Identifier: BSD-3-Clause
-
-SPDX-License-Identifier: BSD-3-Clause
-
-
