@@ -8,53 +8,59 @@
 
 リポジトリをクローンして実行権限を付与することで、すぐに利用できます。
 
-```bash
+```
 $ git clone [https://github.com/takuma926/numstat.git](https://github.com/takuma926/numstat.git)
 $cd numstat$ chmod +x numstat
-```bash
+```
 
 #使用方法
 基本的な使い方
 標準入力から改行区切りで数字を渡します。
 
-```bash
+```
 $ seq 5 | ./numstat
 count: 5
 sum: 15
 mean: 3
 min: 1
 max: 5
-```bash
+```
+
 
 #オプション指定による値の出力
 他のコマンドへ結果を渡す場合などに、特定の統計量のみを数値として出力できます。
 
 合計値のみ出力 (-s または --sum)
 
-```bash
+```
 $ seq 5 | ./numstat -s
 15
-```bash
+```
+
 
 平均値のみ出力 (-m または --mean)
-
+```
 $ seq 5 | ./numstat -m
 3
+```
 
 最大値のみ出力 (--max)
-
+```
 $ seq 5 | ./numstat --max
 5
+```
 
 最小値のみ出力 (--min)
-
+```
 $ seq 5 | ./numstat --min
 1
+```
 
 データ件数のみ出力 (-c または --count)
-
+```
 $ seq 5 | ./numstat -c
 5
+```
 
 #オプション一覧
 
@@ -64,6 +70,7 @@ $ seq 5 | ./numstat -c
 "-c, --count",データ件数のみを出力
 --min,最小値のみを出力
 --max,最大値のみを出力
+
 
 #動作要件
 
