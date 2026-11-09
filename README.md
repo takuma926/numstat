@@ -11,25 +11,30 @@
 ```bash
 $ git clone [https://github.com/takuma926/numstat.git](https://github.com/takuma926/numstat.git)
 $cd numstat$ chmod +x numstat
+```bash
 
 #使用方法
 基本的な使い方
 標準入力から改行区切りで数字を渡します。
 
+```bash
 $ seq 5 | ./numstat
 count: 5
 sum: 15
 mean: 3
 min: 1
 max: 5
+```bash
 
 #オプション指定による値の出力
 他のコマンドへ結果を渡す場合などに、特定の統計量のみを数値として出力できます。
 
 合計値のみ出力 (-s または --sum)
 
+```bash
 $ seq 5 | ./numstat -s
 15
+```bash
 
 平均値のみ出力 (-m または --mean)
 
