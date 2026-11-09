@@ -55,11 +55,7 @@ def main():
     elif args.max:
         print(fmt(val_max))
     else:
-        print(f"count: {count}")
-        print(f"sum: {fmt(total)}")
-        print(f"mean: {fmt(avg)}")
-        print(f"min: {fmt(val_min)}")
-        print(f"max: {fmt(val_max)}")
+        print(f"{count} {fmt(total)} {fmt(avg)} {fmt(val_min)} {fmt(val_max)}")
 
 if __name__ == "__main__":
     main()

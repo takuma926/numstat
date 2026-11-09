@@ -19,11 +19,7 @@ $cd numstat$ chmod +x numstat
 
 ```
 $ seq 5 | ./numstat
-count: 5
-sum: 15
-mean: 3
-min: 1
-max: 5
+5 15 3 1 5
 ```
 
 
