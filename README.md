@@ -77,6 +77,5 @@ bash ./test.bash
 ## ライセンス
 
 - このソフトウェアパッケージは、3条項BSDライセンスの下、再頒布および使用が許可されます。
-- このパッケージのコードやテストスクリプトは、下記のスライド（CC BY-SA 4.0 by Taro Suzuki）のものを参考に作成しています。
-　- https://github.com/tarolab-cit/lectures/tree/main/robosys2026
+
 - © 2026 鈴木 逞馬
