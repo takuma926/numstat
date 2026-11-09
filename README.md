@@ -1,88 +1,84 @@
 # numstat
 
-[![test](https://github.com/takuma926/numstat/actions/workflows/test.yml/badge.svg)](https://github.com/takuma926/numstat/actions/workflows/test.yml)
-
-標準入力から数値データを受け取り、ストリーム統計量（件数、合計、平均、最小値、最大値）を計算して出力するLinuxコマンドです。オプション引数を指定することで、シェルスクリプトやパイプライン処理に適した単一の統計値のみを出力することも可能です。
+標準入力から受け取った数値の統計量（件数、合計、平均、最小値、最大値）を計算して、標準出力に表示するプログラムです
 
 ## インストールと実行方法
 
 リポジトリをクローンして実行権限を付与することで、利用できます。
 
 ```
-$ git clone [https://github.com/takuma926/numstat.git]
-$cd numstat$ chmod +x numstat
+$ git clone https://github.com/takuma926/numstat.git
+$ cd numstat
+$ chmod +x numstat
 ```
 
 ## 使用方法
-基本的な使い方
-標準入力から改行区切りで数字を渡します。
 
+標準入力から数値を読み込みます。デフォルトでは、件数、合計、平均、最小値、最大値の順でスペース区切りで出力します。
+
+使用例：
 ```
-$ seq 5 | ./numstat
+seq 5 | ./numstat
+```
+実行結果：
+```
 5 15 3 1 5
 ```
 
-
 ## オプション指定による値の出力
 他のコマンドへ結果を渡す場合などに、特定の統計量のみを数値として出力できます。
+| オプション | 意味 |
+| --- | --- |
+| `-s`, `--sum` | 合計値のみを出力する |
+| `-m`, `--mean` | 平均値のみを出力する |
+| `-c`, `--count` | データ件数のみを出力する |
+| `--min` | 最小値のみを出力する |
+| `--max` | 最大値のみを出力する |
 
-合計値のみ出力 (-s または --sum)
-
+使用例（合計値のみを出力）：
 ```
 $ seq 5 | ./numstat -s
+```
+実行結果：
+```
 15
 ```
 
+### エラー時の動作
 
-平均値のみ出力 (-m または --mean)
-```
-$ seq 5 | ./numstat -m
-3
-```
+次の場合は、エラーメッセージを標準エラーに出力し、終了ステータス 1 で終わります。
 
-最大値のみ出力 (--max)
-```
-$ seq 5 | ./numstat --max
-5
-```
+- 入力が空だった場合
+- 数値として解釈できない値が含まれていた場合（例: `echo abc | ./numstat`）
 
-最小値のみ出力 (--min)
 ```
-$ seq 5 | ./numstat --min
-1
+echo abc | ./numstat
+```
+実行結果（標準エラー）：
+```
+Error: Invalid input 'abc'
 ```
 
-データ件数のみ出力 (-c または --count)
+## テスト
+GitHub Actions を利用して、プログラムのテストを自動実行します。
+
+![test](https://github.com/takuma926/numstat/actions/workflows/test.yml/badge.svg)
+
+ローカル環境では、以下のコマンドでテストできます。
 ```
-$ seq 5 | ./numstat -c
-5
+bash ./test.bash
 ```
-
-## オプション一覧
-
-オプション,説明
-"-s, --sum",合計値のみを出力
-"-m, --mean",平均値のみを出力
-"-c, --count",データ件数のみを出力
---min,最小値のみを出力
---max,最大値のみを出力
-
 
 ## 動作要件
 
-OS: Ubuntu 22.04 LTS
-
-Python: 3.10 / 3.11 / 3.12 / 3.13 / 3.14
-
-## テストについて
-
-リポジトリ内の test.bash を用いて、正常系入力、異常系入力（文字入力や空入力時の標準エラー出力と終了ステータス）、各オプションの動作検証を行っています。GitHub Actions により、対応する全 Python バージョンでの自動テストを実施しています。
+- Ubuntu Linux (24.04 LTS)
+- Python 3
 
 ## ライセンス
 
-このソフトウェアは、BSD 3-Clause License の下で公開されています。
-
-SPDX-FileCopyrightText: 2026 鈴木 逞馬
+- このソフトウェアパッケージは、3条項BSDライセンスの下、再頒布および使用が許可されます。
+- © 2026 鈴木 逞馬
+- SPDX-License-Identifier: BSD-3-Clause
 
 SPDX-License-Identifier: BSD-3-Clause
 
